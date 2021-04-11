@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="add" method="post">
+        {% csrf_token %}
+
+        Enter hostname or host IP : <input type="text" name="host"><br>
+        <input type="submit">
+    </form>
+</body>
+</html>
