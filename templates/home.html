@@ -10,29 +10,76 @@
     <title>Chatting</title>
 </head>
 <body>
-    <h3>EmotionBuddy</h3>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><i class="fab fa-telegram"></i></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#about"><h3>EmotionBuddy</h3></a>
+              </li>
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="#proj">Project</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="#lang">Languages</a>-->
+<!--              </li>-->
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+<!--    <i class="fab fa-telegram"></i>-->
+<!--    <h3>EmotionBuddy</h3>-->
     <section>
         <div class="container">
           <div class="row">
             <div class="col-sm" id="firstcol">
-              One of three columns<br>
+              <br>
 <!--                Client is {{reaction_of_client}}-->
-                Server is {{reaction_of_server}}
+                {% for ele in reaction_of_server %}
+                    {{servername}} is feeling {{ele}}<br><br>
+                {% endfor %}
+
+
+                <div class="dropdown">
+                  <span><h5><b>Recommendations</b></h5></span>
+                  <div class="dropdown-content">
+                      {% for ele in list%}
+                        <p>{{ele}}</p>
+                      {% endfor %}
+                  </div>
+                </div>
+
             </div>
             <div class="col-sm" id="secondcol">
-              Two of three columns<br>
+              <br>
 <!--                Server will start on host: {{host}}-->
 <!--                <br>-->
 <!--                Waiting for connection<br>-->
 <!--                {{addr}} Has connected to the server')-->
-                SERVER: {{msg_from_server}}
+                {% for item1, item2 in messagelist %}
+                    {{servername}}: {{item1}}<br>
+                    {% if item2 != "" %}
+                        You: {{item2}}<br>
+                    {% endif %}
+                {% endfor %}
                 <form action="sendmsg" method="post">
 
                     {% csrf_token %}
 
-                    Type your message: <input type="text" name="msg_from_client"><br>
-                    <input type="submit">
+                    Type your message: <input type="text" name="msg_from_client">
+<!--                    <a href="#"><i class="fas fa-chevron-right"></i></a>-->
+                    <input type="submit" class="btn" value="Send">
+<!--                        <button type="submit" class="btn btn-success">-->
+<!--                            <i class="fas fa-chevron-right"></i>N-->
+<!--                        </button>-->
                 </form>
+
             </div>
 
           </div>
